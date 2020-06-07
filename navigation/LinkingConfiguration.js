@@ -8,6 +8,7 @@ export default {
       screens: {
         Home: "home",
         Todo: "todo",
+        Resume: "resume",
       },
     },
   },

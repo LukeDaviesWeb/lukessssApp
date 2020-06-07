@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Alert } from "react-native";
+import { View, Alert, ScrollView, TouchableOpacity, Text } from "react-native";
 
 import AddItem from "../components/AddItem";
 import CompletedItems from "../components/CompletedItems";
@@ -21,6 +21,7 @@ const TodoScreen = () => {
   ]);
 
   const [completedItems, setCompletedItems] = useState([]);
+  const [viewCompleteItems, setCompleteView] = useState(false);
 
   const deleteItem = (item) => {
     item.complete
@@ -77,20 +78,26 @@ const TodoScreen = () => {
                 have a look below"
       />
 
-      <AddItem addItem={addItem} />
-
-      <UncompletedItems
-        items={items}
-        deleteItem={deleteItem}
-        updateItem={updateItem}
-      />
-
-      {completedItems.length >= 1 && (
+      {viewCompleteItems ? (
         <View>
           <IntroText text="Completed Items appear here, tap the cross to remove completely" />
           <CompletedItems
             completedItems={completedItems}
             deleteItem={deleteItem}
+          />
+        </View>
+      ) : (
+        <View>
+          <AddItem addItem={addItem} />
+
+          <TouchableOpacity style={globalStyles.altBtn}>
+            <Text style={globalStyles.btnText}>See Completed Items</Text>
+          </TouchableOpacity>
+
+          <UncompletedItems
+            items={items}
+            deleteItem={deleteItem}
+            updateItem={updateItem}
           />
         </View>
       )}

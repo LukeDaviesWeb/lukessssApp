@@ -4,7 +4,7 @@ import * as React from "react";
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import TodoScreen from "../screens/TodoScreen";
-
+import ResumeScreen from "../screens/ResumeScreen";
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Home";
 
@@ -36,6 +36,16 @@ export default function BottomTabNavigator({ navigation, route }) {
           ),
         }}
       />
+      <BottomTab.Screen
+        name="Resume"
+        component={TodoScreen}
+        options={{
+          title: "Resume",
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-person" />
+          ),
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
@@ -49,5 +59,7 @@ function getHeaderTitle(route) {
       return "Lukessssweb";
     case "Todo":
       return "Whats left to do";
+    case "Resume":
+      return "Here's me so far";
   }
 }
